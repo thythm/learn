@@ -21,6 +21,18 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
