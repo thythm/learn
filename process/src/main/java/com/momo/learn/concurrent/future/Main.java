@@ -1,5 +1,9 @@
 package com.momo.learn.concurrent.future;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.*;
+
 /**
  * @author majunjie
  * @description
@@ -7,11 +11,13 @@ package com.momo.learn.concurrent.future;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
-//        testFuture();
+//        testCustomFuture();
 
-        testWait();
+//        testWait();
+
+        testFuture();
 
     }
 
@@ -30,7 +36,32 @@ public class Main {
         System.out.println(obj.get());
 
     }
-    public static void testFuture() {
+
+    public static void testFuture() throws Exception{
+
+        ExecutorService pool = Executors.newFixedThreadPool(1);
+
+        Callable<String> callable = () -> {
+            Thread.sleep(3000);
+            return  "hello world";
+        };
+
+        /*Future future = pool.submit(callable);
+        System.out.println(future.get());*/
+
+        /*FutureTask<String> task = new FutureTask(callable);
+        task.run();
+        System.out.println(task.get());*/
+
+        List<Future<String>> futures = pool.invokeAll(Arrays.asList(callable));
+        for (Future<String> future : futures) {
+            System.out.println(future.get());
+        }
+
+        pool.shutdown();
+    }
+
+    public static void testCustomFuture() {
 
         Client client = new Client();
 
