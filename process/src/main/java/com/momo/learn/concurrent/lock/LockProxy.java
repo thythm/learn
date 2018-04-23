@@ -30,7 +30,7 @@ public class LockProxy implements MethodInterceptor{
         if (lockConf==null) {
             Object invoke = methodProxy.invokeSuper(o, objects);
             return invoke;
-    }
+        }
         LockInterface lock = BeanFactory.getBean(lockConf.lockConfig());
         System.out.println("执行方法前，加锁，" + lock.lock("", ""));
         Object invoke = methodProxy.invokeSuper(o, objects);
